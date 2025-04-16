@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+
+    /* .titulo{ */
+
+    /* font-size: 76px; */
+    /* } */
+
+    /* #meutitulo { */
+
+    /* font-size: 76px; */
+    /* } */
+
+    h1 {
+        font-size: 76px;
+        font-family: "inter";
+        font-weight: normal;
+    }
+
+    .input {
+
+        padding: 18px;
+        /* espaçamento interno */
+        border: none;
+        /* remove a borda */
+        background-color: #f7f9fb;
+        /* cor de fundo */
+        border-radius: 10px;
+        border: 1px #ccc;
+        /*remove borda*/
+        background-color: #f7f9fb;
+        border-radius: 5px;
+        width: 377px;
+        margin-bottom: 16px;
+
+
+    }
+
+
+    .btn {
+
+        background-color: black;
+        /* Cor de fundo preta */
+        color: white;
+        /* Cor do texto branca para contraste */
+        border: none;
+        /* Remove bordas padrão */
+        padding: 18px;
+        /* Ajusta o espaçamento interno */
+        font-size: 16px;
+        /* Define o tamanho da fonte */
+        width: 377px;
+        cursor: pointer;
+        /* Muda o cursor ao passar o mouse */
+        border-radius: 10px;
+    }
+
+    .login-container {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+
+    }
+
+    .logo {
+
+        height: 60px;
+
+    }
+}
