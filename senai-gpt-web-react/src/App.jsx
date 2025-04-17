@@ -1,11 +1,14 @@
-import Login from "./assets/pages/login"
+import Login from "./pages/login"
+
 
 function App() {
   
 
   return (
     <>
-    <login/>
+
+    <Login/>
+   
    
 </>
   )
