@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: #fff; /* Fundo branco geral */
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Painel esquerdo */
+.left-panel {
+    width: 260px; /* Largura um pouco maior para acomodar o novo botão */
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px; /* Aumentando um pouco o padding geral */
+    border-right: 1px solid #e0e0e0;
+}
+
+.left-panel .top {
+    margin-bottom: 25px; /* Mais espaço abaixo do topo */
+}
+
+.left-panel .top button,
+.left-panel .bottom button {
+    background: transparent;
+    border: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Aumentando um pouco o gap */
+    padding: 10px; /* Aumentando o padding dos botões */
+    font-size: 16px; /* Aumentando a fonte */
+    width: 100%;
+    text-align: left;
+    border-radius: 8px; /* Bordas mais arredondadas */
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+.left-panel .top button:hover,
+.left-panel .bottom button:hover {
+    background-color: #e8e8e8;
+}
+
+.left-panel .top .botaoNewChatPrincipal button {
+    background-color: #000000; /* Fundo preto */
+    color: #ffffff; /* Texto branco */
+    padding: 12px 20px; /* Ajustando o padding */
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Alinhando o texto à esquerda */
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px; /* Mais margem inferior */
+}
+
+.left-panel .top .botaoNewChatPrincipal button:hover {
+    background-color: #333; /* Cor de fundo cinza mais escura ao passar o mouse */
+}
+
+/* Painel central */
+.central-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+    height: 100vh;
+    position: relative;
+    background-color: #fff;
+    align-items: center; /* Mantém o alinhamento central */
+}
+
+.content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.logo {
+    width: 300px; /* Ajustando o tamanho do logo */
+    margin-bottom: 30px; /* Mais margem inferior */
+}
+
+.titulo {
+    font-size: 36px; /* Aumentando o tamanho do título */
+    font-weight: 600;
+    margin-bottom: 40px; /* Mais margem inferior */
+    color: #222; /* Cor do título mais escura */
+}
+
+.info-boxes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os elementos filhos */
+    width: 960px; /* Largura total das info-boxes */
+    max-width: 100%; /* Garante responsividade em telas menores */
+}
+
+.info-boxes {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    text-align: left;
+    margin-bottom: 20px; /* Adiciona um espaço entre as caixas e a barra de entrada */
+    width: 100%; /* Ocupa a largura do container pai */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Aumentando o padding interno */
+    border: none; /* Adicionando uma borda */
+    width: 300px; /* Largura maior para as caixas */
+}
+
+.info img {
+    width: 32px; /* Ajustando o tamanho dos ícones */
+    margin-bottom: 15px;
+    color: #555; /* Cor dos ícones */
+}
+
+.info h3 {
+    font-size: 18px; /* Aumentando a fonte do título da seção */
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.info p {
+    font-size: 16px; /* Aumentando a fonte do texto */
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    background-color: #f0f0f0; /* Fundo cinza individual para cada frase */
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block; /* Para que o fundo cinza se ajuste ao tamanho da frase */
+    width: auto; /* Ajusta a largura ao conteúdo */
+    text-align: center; /* Centraliza o texto dentro do fundo cinza */
+}
+
+/* Campo de entrada */
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    width: 100%; /* Ocupa a largura do container pai */
+    max-width: 960px; /* Largura máxima para alinhar com as info-boxes */
+}
+
+.attach-btn,
+.audio-btn,
+.send-btn {
+    background: transparent;
+    border: none;
+    padding: 8px; /* Reduzindo o padding dos botões dos ícones */
+    cursor: pointer;
+    outline: none;
+    color: #777;
+    font-size: 20px; /* Ajustando o tamanho dos ícones */
+    margin-right: 10px; /* Adicionando margem à direita dos botões de ícone */
+}
+
+/* Estilo específico para o botão de anexar */
+.attach-btn {
+    margin-left: -10px; /* Para alinhar visualmente com a borda esquerda */
+}
+
+.input-container input[type="text"] {
+    flex-grow: 1;
+    padding: 15px; /* Aumentando o padding vertical do input */
+    border: 1px solid #ccc;
+    border-radius: 25px; /* Mais arredondado */
+    font-size: 16px;
+    outline: none;
+    background-color: #fff;
+    height: 60px; /* Altura da barra de digitação */
+}
+
+.input-container input[type="text"]::placeholder {
+    color: #999;
+    font-size: 16px;
+}
