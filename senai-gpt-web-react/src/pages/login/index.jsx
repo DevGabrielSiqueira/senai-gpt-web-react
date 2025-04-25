@@ -2,6 +2,7 @@
 import "./login.css";
 import logo from "../../assets/imgs/Chat.png";
 import { useState } from "react";
+import robo from "../../assets/imgs/robo.png"
 
 function Login() {
 
@@ -70,31 +71,31 @@ function Login() {
   return (
     <>
 
-      <hearder>
+      <header>
+      </header>
 
-      </hearder>
+        <main className="page-container">
 
-      <main className="page-container">
+          <div className="robo-image">
+            <img src={robo} alt="robo" />
+          </div>
 
-        <div className="robo-image">
-        </div>
+          <div className="Login-container">
 
-        <div className="Login-container">
+            <img className="login-logo" src={logo} alt="Logo do SenaiGPT" />
 
-          <img className="login-logo" src={logo} alt="Logo do SenaiGPT" />
+            <h1 id="meutitulo" className="titulo">Login</h1>
 
-          <h1 id="meutitulo" className="titulo">Login</h1>
+            <input className="inpt" value={email} onChange={event => setEmail(event.target.value)} type="email" placeholder="Insira o E-mail" />
+            <input className="inpt" value={password} onChange={event => setPassword(event.target.value)} type="password" placeholder="Insira uma Senha" />
 
-          <input className="inpt" value={email} onChange={event => setEmail(event.target.value)} type="email" placeholder="Insira o E-mail" />
-          <input className="inpt" value={password} onChange={event => setPassword(event.target.value)} type="password" placeholder="Insira uma Senha" />
+            <button className="btn" onClick={() => onLoginClick()}>Entrar</button>
 
-          <button className="btn" onClick={() => onLoginClick()}>Entrar</button>
-
-        </div>
-
+          </div>
 
 
-      </main>
+
+        </main>
 
     </>
   )
