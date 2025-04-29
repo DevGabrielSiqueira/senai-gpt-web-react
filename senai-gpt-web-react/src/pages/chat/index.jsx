@@ -34,7 +34,7 @@ function Chat() {
 
             if (response.ok) {
                 const json = await response.json();
-                setChats(json);
+                setChats(json); 
             } else if (response.status === 401) {
                 alert("Token inválido. Faça login novamente.");
                 window.location.href = "/login";
@@ -97,34 +97,46 @@ function Chat() {
             return botMessage;
         }
 
+
+        
     }
 
-
     const enviarMensagem = async (message) => {
+        let userId = localStorage.getItem("meuId");
 
-        let resposta = await chatGPT(message);
-
-        console.log("Resposta: ", resposta);
-
-        const novaMensagemUsuario= {
-
-        useId: "",
+        let novaMensagemUsuario = {
+    
         text: message,
-        id:10
-    };
+        id:crypto.randomUUID(),
+        userId:  userId
+        };
+    
+        let novoChatSelecionado = {...chatSelecionado};
+        novoChatSelecionado.messages.push(novaMensagemUsuario);
+        setChatSelecionado(novoChatSelecionado);
+    
+        let respostaGPT = await chatGPT(message);
+    
+        let novaMensagemGPT = {
+            text: respostaGPT,
+            id: crypto.randomUUID(),
+            userId: "chatbot"
+    
+        };
+    
+        novoChatSelecionado = {... chatSelecionado};
+        novoChatSelecionado.messages.push(novaMensagemGPT);
+        setChatSelecionado(novoChatSelecionado);
+    
+    
+        console.log ("resposta", respostaGPT);
+    }
 
-    let  novaRespostaChatGPT = {
-        userId: "chatbot",
-        text: resposta,
-        id: 
-    };
+    
 
-    let novoChatSelecionado ={...chatSelecionado}; // Cópia do chatSelecionado.
+ 
 
-    novoChatSelecionado.messages.push(novaMensagemUsuario);// Adicionando uma mensagem
-    novoChatSelecionado.messages.push(novaRespostaChatGPT);// Adicionando uma mensagem
-
-    setChatSelecionado
+   
 
     return (
         <div className="container">
@@ -206,8 +218,9 @@ function Chat() {
                         type="text"
                     />
 
-                    <button className="send-btn"><img onClick={() => enviarMensagem(userMessage)} src={enviar} alt="Enviar" /></button>
-                </div>
+                <button className="send-btn" onClick={() => enviarMensagem(userMessage)}><img src={enviar} alt="Enviar" /></button>                
+
+</div>
             </main>
         </div>
     );
