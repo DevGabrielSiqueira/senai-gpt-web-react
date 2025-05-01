@@ -1,42 +1,28 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/login";
+import NewUser from './pages/NewUser';  // Página de Novo Usuário
+import Login from './pages/Login';          
 import Chat from "./pages/chat";
 
 
 function App() {
-
   const isAuthenticated = () => {
-
     let token = localStorage.getItem("meuToken");
-
-    if (token == null) {
-
-      return false;
-
-    } else {
-
-      return true;
-
-
-    }
-  }
+    return token !== null;
+  };
 
   return (
-    <>
-      <BrowserRouter>
-
-        <Routes>
-
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/chat" element={isAuthenticated() == true ? <Chat/>: <Login/>} ></Route>
-          <Route path="*" element={<h1>Not Found</h1>}></Route>
-
-        </Routes>
-
-      </BrowserRouter>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* Tornando a página de Novo Usuário a principal */}
+        <Route path="/" element={<NewUser />} />  {/* Página inicial é Novo Usuário */}
+        
+        <Route path="/login" element={<Login />} />
+        <Route path="/chat" element={isAuthenticated() ? <Chat /> : <Login />} />
+        <Route path="/NewUser" element={<NewUser />} />
+        <Route path="*" element={<h1>Página não encontrada</h1>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

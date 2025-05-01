@@ -25,7 +25,7 @@ function Chat() {
 
     const getChats = async () => {
         try {
-            const response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+            const response = await fetch("https://senai-gpt-api.azurewebsites.net/users", {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("meuToken")
                 }
@@ -127,6 +127,9 @@ function Chat() {
 
 
     const chatGPT = async (message) => {
+
+        return "[Mensagem fixa]"
+
         const endpoint = "https://ai-testenpl826117277026.openai.azure.com/";
         const apiKey = "DCYQGY3kPmZXr0lh7xeCSEOQ5oiy1aMlN1GeEQd5G5cXjuLWorWOJQQJ99BCACYeBjFXJ3w3AAAAACOGol8N";
         const deploymentId = "gpt-4";
@@ -217,7 +220,7 @@ function Chat() {
 
         
     
-        let response = await fetch("https://senai-gpt-api.azurewebsites.net/chats", {
+        let response = await fetch("https://senai-gpt-api.azurewebsites.net/users", {
             method: "POST",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("meuToken"),
