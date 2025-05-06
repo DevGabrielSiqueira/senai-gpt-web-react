@@ -57,3 +57,21 @@ h1 {
     height: 100vh;
     width: 50vw;
 }
+
+@media screen and (max-width:768px){
+    /* celular */
+    
+    .robo-image{
+    
+    display: none;
+    }
+    .Login-container{
+        width:100vw;
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../../assets/imgs/robo.png");
+        background-size: cover;
+        color: #f7f9fb;
+        }
+        .titulo{
+            color: #f7f9fb;
+        }
+    }

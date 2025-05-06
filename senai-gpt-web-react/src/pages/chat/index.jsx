@@ -19,6 +19,8 @@ function Chat() {
     const [chatSelecionado, setChatSelecionado] = useState(null);
     const [userMessage, setUserMessage] = useState("");
 
+    const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(false);
+
     useEffect(() => {
         getChats();
     }, []);
@@ -36,7 +38,7 @@ function Chat() {
                 setChats(json);
             } else if (response.status === 401) {
                 alert("Token inválido. Faça login novamente.");
-                window.location.href = "/login";
+                // window.location.href = "/login";
             }
         } catch (error) {
             console.error("Erro ao buscar os chats:", error);
@@ -203,14 +205,14 @@ function Chat() {
 
     const criarNovoChat = async () => {
         let userId = localStorage.getItem("meuId");
-    
+
         let novoTitulo = prompt("Insira o título do chat:");
 
         if (!novoTitulo) {
             alert("Insira um título.");
             return;
         }
-    
+
         let nChat = {
             chatTitle: novoTitulo,
             id: crypto.randomUUID(),
@@ -218,8 +220,8 @@ function Chat() {
             messages: []
         };
 
-        
-    
+
+
         let response = await fetch("https://senai-gpt-api.azurewebsites.net/users", {
             method: "POST",
             headers: {
@@ -228,18 +230,25 @@ function Chat() {
             },
             body: JSON.stringify(nChat)
         });
-    
+
         if (response.ok) {
             await getChats();
         } else {
             alert("Erro ao criar o chat.");
         }
     };
-    
+
 
     return (
         <div className="container">
-            <aside className="left-panel">
+            <button className="btn-toggle-panel"
+            onClick={()=> setIsLeftPanelOpen(true)} 
+            >
+                ☰
+
+            </button>
+
+            <header className={`left-panel ${isLeftPanelOpen == true? "open" : ""}`}>
                 <div className="top">
                     <div className="botaoNewChatPrincipal">
                         <button onClick={newChat}>+ New Chat</button>
@@ -262,9 +271,10 @@ function Chat() {
                     <button><img src={arrowSquare} alt="FAQ" />Updates & FAQ</button>
                     <button onClick={onLogOutClick}><img src={logOut} alt="Log out" />Log out</button>
                 </div>
-            </aside>
+            </header>
 
             <main className="central-panel">
+                
                 {chatSelecionado === null ? (
                     <div className="content-center">
                         <img src={Logochat} alt="SenaiGPT Logo" className="logo" />
