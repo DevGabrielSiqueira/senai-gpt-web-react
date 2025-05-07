@@ -52,6 +52,7 @@ function Chat() {
 
     const clickChat = (chat) => {
         setChatSelecionado(chat);
+        setIsLeftPanelOpen(false);
     };
 
     const newChat = async () => {
@@ -242,7 +243,7 @@ function Chat() {
     return (
         <div className="container">
             <button className="btn-toggle-panel"
-            onClick={()=> setIsLeftPanelOpen(true)} 
+            onClick={()=> setIsLeftPanelOpen(!isLeftPanelOpen)} 
             >
                 ☰
 
@@ -250,6 +251,9 @@ function Chat() {
 
             <header className={`left-panel ${isLeftPanelOpen == true? "open" : ""}`}>
                 <div className="top">
+
+
+
                     <div className="botaoNewChatPrincipal">
                         <button onClick={newChat}>+ New Chat</button>
                     </div>
