@@ -323,6 +323,10 @@ body.dark-mode .left-panel  button{
 
 }
 
+body.dark-mode .left-panel .top .botaoNewChatPrincipal button {
+    background-color: white !important;
+    color: black !important;
+ }
 
 @media screen and (max-width:768px) {
 
