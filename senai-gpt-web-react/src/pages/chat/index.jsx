@@ -1,11 +1,17 @@
 import "./index.css"
 import Logochat from "../../assets/imgs/Chat.png"
 import arrowSquare from "../../assets/imgs/ArrowSquareOut.png"
+import IconSetWhite from "../../assets/imgs/IconSetWhite.png"
 import chatText from "../../assets/imgs/ChatText.png"
-import lixeira from "../../assets/imgs/IconSet.png"
+import ChatWhite from "../../assets/imgs/ChatWhite.png"
+import lixeira from "../../assets/imgs/iconSet.png"
+import lixeirawhite from "../../assets/imgs/lixeirawhite.png"
+import sunwhite from "../../assets/imgs/sunwhite.png"
 import sol from "../../assets/imgs/Sun.png"
 import usuario from "../../assets/imgs/User.png"
+import userwhite from "../../assets/imgs/userwhite.png"
 import logOut from "../../assets/imgs/logOut.png"
+import logOutWhite from "../../assets/imgs/LogOutWhite.png"
 import chatsIcon from "../../assets/imgs/chats.png"
 import estrela from "../../assets/imgs/iconeestrela.png"
 import escudo from "../../assets/imgs/iconeescudo.png"
@@ -14,15 +20,28 @@ import anexar from "../../assets/imgs/iconeimg.png"
 import enviar from "../../assets/imgs/iconeenviar.png"
 import { useEffect, useState } from "react"
 
+
 function Chat() {
     const [chats, setChats] = useState([]);
     const [chatSelecionado, setChatSelecionado] = useState(null);
     const [userMessage, setUserMessage] = useState("");
 
+    const [darkMode, setDarkMode] = useState(false);
+
     const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(false);
 
     useEffect(() => {
+
+        // Executada toda vez que a tela abre
         getChats();
+
+        // verifica se o modo escuro está ativo
+
+        let modoEscuro = localStorage.getItem("darkMode");
+        if (modoEscuro === "true") {
+            setDarkMode(true);
+            document.body.classList.add("dark-mode");
+        }
     }, []);
 
     const getChats = async () => {
@@ -123,11 +142,6 @@ function Chat() {
             alert("Erro ao apagar todos os chats.");
         }
     };
-
-
-
-
-
 
     const chatGPT = async (message) => {
 
@@ -239,17 +253,33 @@ function Chat() {
         }
     };
 
+    const toggleDarkMode = () => {
+
+        setDarkMode(!darkMode); //inverter o valor do dark mode
+
+        if (darkMode == true) {
+
+            document.body.classList.remove("dark-mode");
+        } else {
+
+            document.body.classList.add("dark-mode");
+        }
+
+        localStorage.setItem("dark-mode", !darkMode);
+
+    }
+
 
     return (
         <div className="container">
             <button className="btn-toggle-panel"
-            onClick={()=> setIsLeftPanelOpen(!isLeftPanelOpen)} 
+                onClick={() => setIsLeftPanelOpen(!isLeftPanelOpen)}
             >
                 ☰
 
             </button>
 
-            <header className={`left-panel ${isLeftPanelOpen == true? "open" : ""}`}>
+            <header className={`left-panel ${isLeftPanelOpen == true ? "open" : ""}`}>
                 <div className="top">
 
 
@@ -259,7 +289,7 @@ function Chat() {
                     </div>
                     {chats.map(chat => (
                         <button key={chat.id} className="btn-chat" onClick={() => clickChat(chat)}>
-                            <img src={chatText} alt="chat icon" />
+                            <img src={darkMode == true? ChatWhite:chatText} alt="chat icon" />
                             {chat.chatTitle}
                         </button>
                     ))}
@@ -267,18 +297,16 @@ function Chat() {
 
 
                 <div className="bottom">
-                    <button onClick={apagarTodosChats}>
-                        <img src={lixeira} alt="lixeira" />Clear conversations
-                    </button>
-                    <button><img src={sol} alt="sol" />Light mode</button>
-                    <button><img src={usuario} alt="usuário" />My account</button>
-                    <button><img src={arrowSquare} alt="FAQ" />Updates & FAQ</button>
-                    <button onClick={onLogOutClick}><img src={logOut} alt="Log out" />Log out</button>
+                    <button onClick={apagarTodosChats}><img src={darkMode == true ? lixeirawhite : lixeira} alt="lixeira" />Clear conversations</button>
+                    <button onClick={toggleDarkMode}><img src={darkMode == true ? sunwhite : sol} alt="sol" />Light mode </button>
+                    <button><img src={darkMode == true ? userwhite : usuario} alt="usuário" />My account</button>
+                    <button><img src={darkMode == true ? IconSetWhite : arrowSquare} alt="FAQ" />Updates & FAQ</button>
+                    <button onClick={onLogOutClick}><img src={ darkMode == true? logOutWhite:logOut} alt="Log out" />Log out</button>
                 </div>
             </header>
 
             <main className="central-panel">
-                
+
                 {chatSelecionado === null ? (
                     <div className="content-center">
                         <img src={Logochat} alt="SenaiGPT Logo" className="logo" />
